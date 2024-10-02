@@ -1,7 +1,12 @@
+import Header from "./components/Header/Header";
+import TextInputSection from "./components/TextInputSection/TextInputSection";
 
 function App() {
   return (
-    <div>hello</div>
+    <div>
+      <Header />
+      <TextInputSection/>
+    </div>
   );
 }
 
