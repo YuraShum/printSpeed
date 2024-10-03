@@ -18,7 +18,7 @@ const Key = ({ config, rowIndex }) => {
   return (
     <div
       className='key'
-      style={{ backgroundColor: config.color }}>
+      style={{ color: config.darkerColor, backgroundColor:config.backgroundColor }}>
       {uniqueChar.map((char, index) => (
         <p key={char} className={char === 'SPACE' ? '' :`key-p-${index}`}>{char}</p>
       ))}
