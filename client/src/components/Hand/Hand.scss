@@ -1,0 +1,113 @@
+.hand {
+    display: flex;
+    width: 170px;
+    height: 170px;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: #f3e5ab;
+    border-radius: 45%;
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.finger {
+    width: 50px;
+    border-color: #f3e5ab;
+    background-color: #f3e5ab;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    & > .finger-color {
+        width: 50px;
+        height: 50px;
+        border-top-left-radius: 28px;
+        border-top-right-radius: 28px;
+    }
+
+    &.thumb {
+        position: absolute;
+        height: 180px;
+        transform: rotate(30deg);
+
+        &.left {
+            right: -25px;
+            top: 0px;
+        }
+
+        &.right {
+            left: -25px;
+            top: 0px;
+            transform: rotate(-30deg);
+        }
+    }
+
+    &.index {
+        position: absolute;
+        height: 170px;
+        &.left {
+            top: -50px;
+            left: 0;
+        }
+
+        // Права рука
+        &.right {
+            top: -50px;
+            right: 0;
+        }
+    }
+
+    &.middle {
+        height: 190px;
+        position: absolute;
+
+        // Ліва рука
+        &.left {
+            top: -120px;
+            left: 51px;
+        }
+
+        // Права рука
+        &.right {
+            top: -120px;
+            right: 51px;
+        }
+    }
+
+    &.ring {
+        height: 190px;
+        position: absolute;
+
+        // Ліва рука
+        &.left {
+            top: -150px;
+            left: 102px;
+        }
+
+        // Права рука
+        &.right {
+            top: -150px;
+            right: 102px;
+        }
+    }
+
+    &.pinky {
+        height: 190px;
+        position: absolute;
+
+        // Ліва рука
+        &.left {
+            top: -100px;
+            left: 153px;
+        }
+
+        // Права рука
+        &.right {
+            top: -100px;
+            right: 153px;
+        }
+    }
+}
