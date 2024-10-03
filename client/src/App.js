@@ -1,4 +1,5 @@
 import Header from "./components/Header/Header";
+import Keyboard from "./components/Keyboard/Keyboard";
 import TextInputSection from "./components/TextInputSection/TextInputSection";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div>
       <Header />
       <TextInputSection/>
+      <Keyboard/>
     </div>
   );
 }

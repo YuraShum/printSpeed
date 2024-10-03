@@ -1,0 +1,49 @@
+.keyboard-conteiner{
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.keyboard-row{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    font-size: 28px;
+    gap: 10px;
+    
+}
+.key{
+    position: relative;
+    margin: 0;
+    padding: 10px;
+    border: solid 1px rgb(177, 177, 177);
+    box-shadow: 1px 3px 5px gray;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    min-width: 55px;
+    min-height: 55px;
+    
+}
+
+.key-p-0{
+    font-weight: bold;
+    position: absolute;
+    top: -10px;
+    left: 5px;
+}
+
+.key-p-1{
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    font-size: 24px;
+}
+.key-p-2{
+    position: absolute;
+    top: -10px;
+    left: 50px;
+    font-size: 24px;
+}

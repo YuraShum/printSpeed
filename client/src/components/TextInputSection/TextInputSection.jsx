@@ -6,7 +6,6 @@ const TextInputSection = () => {
     const randomtext = getRandomText()
     const [text, setText] = useState(randomtext)
     const [currentInputText, setCurrentInputText] = useState('')
-    const [FilledText, setFilledText] = useState()
 
     const handleChangeInputText = (event) => {
         const input = event.target.value
