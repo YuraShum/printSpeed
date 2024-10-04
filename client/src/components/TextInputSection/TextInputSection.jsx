@@ -17,6 +17,7 @@ const TextInputSection = () => {
 
     useEffect(() => {
         adjustTextareaHeight()
+
         const handleClick = () => {
             setIsBlurred(true)
         }
@@ -26,25 +27,26 @@ const TextInputSection = () => {
         }
     }, [])
 
-    
-
     const paragraphElement = () => {
         return document.querySelector('.text-input-chars')
     }
 
     const handleChangeInputText = (event) => {
-        const input = event.target.value
-        let correctText = ''
+        const input = event.target.value;
+        let correctText = '';
+        if (event.nativeEvent.inputType === 'deleteContentBackward') {
+            return;
+        }
         for (let i = 0; i < input.length; i++) {
             if (input[i] === text[i]) {
-                correctText += input[i]
-            }
-            else {
-                break
+                correctText += input[i];
+            } else {
+                break;
             }
         }
-        setCurrentInputText(correctText)
-    }
+    
+        setCurrentInputText(correctText);
+    };
 
     const handleResumeTyping = (event) => {
         event.stopPropagation();
@@ -55,7 +57,7 @@ const TextInputSection = () => {
     return (
         <div className='text-section'>
             {isBlurred && (
-                <button 
+                <button
                     onClick={handleResumeTyping}
                     className='resume-button'>
                     Продовжити друк
@@ -72,7 +74,6 @@ const TextInputSection = () => {
                     ))}
                 </p>
                 <textarea
-                
                     ref={textareaRef}
                     value={currentInputText}
                     onChange={handleChangeInputText}

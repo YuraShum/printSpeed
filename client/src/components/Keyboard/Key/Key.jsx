@@ -6,7 +6,7 @@ const Key = ({ config, rowIndex, keyPressed }) => {
     Array.from(new Set([config.keyNameEn, config.symbolEnUpper, config.symbolUkUpper])) :
     Array.from(new Set(getUniqueCharWithoutUpperCase([config.keyNameEn, config.symbolEnUpper, config.symbolUkUpper])))
 
-  const isPressedKey = uniqueChar.includes(keyPressed.toUpperCase());
+  const isPressedKey = uniqueChar.includes(keyPressed?.toUpperCase());
 
   function getUniqueCharWithoutUpperCase(arayChar) {
     return arayChar.map(char => {
