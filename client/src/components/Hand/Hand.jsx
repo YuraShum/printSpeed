@@ -9,14 +9,14 @@ const Hand = ({ isLeft }) => {
     <div className={`hand`}>
       {isLeft ?
         leftHand.map(finger => (
-          <Finger name={finger.name} color={finger.color} rotate='left' />
+          <Finger key={finger.name} name={finger.name} color={finger.color} rotate='left' />
         )) :
         rightHand.map(finger => (
-          <Finger name={finger.name} color={finger.color} rotate='right' />
+          <Finger key={finger.name} name={finger.name} color={finger.color} rotate='right' />
         ))
       }
     </div>
   );
 }
 
-export default Hand
+export default Hand   
