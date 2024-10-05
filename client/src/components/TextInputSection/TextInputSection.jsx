@@ -11,10 +11,10 @@ const TextInputSection = () => {
     const [currentInputText, setCurrentInputText] = useState('')
     const [isBlurred, setIsBlurred] = useState(false)
     const textareaRef = useRef(null)
-    const [wrongCounter, setWrongCounter] = useState(0); 
+    const [wrongCounter, setWrongCounter] = useState(0);
     //!! пр розширені функціоналу можна дозволи токистувачу вибирати тривалість
     const [timeLeft, setTimeLeft] = useState(TIME_LEFT)
-    console.log(TIME_LEFT)
+
     useEffect(() => {
         if (!isBlurred && timeLeft > 0) {
             const timer = setInterval(() => {
@@ -27,11 +27,10 @@ const TextInputSection = () => {
     console.log(timeLeft)
 
     useEffect(() => {
-        if(textareaRef.current){
+        if (textareaRef.current) {
             textareaRef.current.focus()
         }
     }, [text])
-
 
     const adjustTextareaHeight = () => {
         const element = document.querySelector('textarea')
@@ -42,8 +41,10 @@ const TextInputSection = () => {
     useEffect(() => {
         adjustTextareaHeight()
 
-        const handleClick = () => {
-            setIsBlurred(true)
+        const handleClick = (event) => {
+            if(!event.target.closest('.timer button')){
+                setIsBlurred(true)
+            }
         }
         document.addEventListener('mousedown', handleClick)
         return () => {
@@ -65,11 +66,10 @@ const TextInputSection = () => {
             if (input[i] === text[i]) {
                 correctText += input[i];
             } else {
-                setWrongCounter( prevValue => prevValue + 1)
+                setWrongCounter(prevValue => prevValue + 1)
                 break
             }
         }
-
         setCurrentInputText(correctText);
     };
 
@@ -79,13 +79,13 @@ const TextInputSection = () => {
         textareaRef.current.focus()
     }
 
-    const handleRestartTyping = () => {
+    const handleRestartTyping = (event) => {
+        event.stopPropagation()
         setIsBlurred(false)
-        setTimeLeft(TIME_LEFT)  
+        setTimeLeft(TIME_LEFT)
         setText(getRandomText())
         setWrongCounter(0)
         setCurrentInputText('')
-
     }
 
     return (
@@ -119,12 +119,15 @@ const TextInputSection = () => {
                     </div>
                     {/** timer section */}
                     <div className='timer'>
-                        <IoIosRefresh onClick={handleRestartTyping} />
+                        <button
+                            onClick={handleRestartTyping}>
+                            <IoIosRefresh style={{width: '20px',height: '20px'}}/>
+                        </button>
                         <p>{timeLeft} сек</p>
                     </div>
                 </div>
-                : 
-                <ResultSpeed numberCharactersEntered={currentInputText.length} numberOfWrongCharacters={wrongCounter} restartTyping = {handleRestartTyping}/>}
+                :
+                <ResultSpeed numberCharactersEntered={currentInputText.length} numberOfWrongCharacters={wrongCounter} restartTyping={handleRestartTyping} />}
         </>
     )
 }

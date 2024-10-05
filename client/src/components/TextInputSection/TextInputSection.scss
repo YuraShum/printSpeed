@@ -69,4 +69,13 @@
     justify-content: center;
     gap: 6px;
 
+    button{
+        border:none;
+        background-color: transparent;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        padding: 2px;
+    }
+
 }
