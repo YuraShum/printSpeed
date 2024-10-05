@@ -3,6 +3,7 @@ import { getRandomText } from '../../utils/getRandomText'
 import './TextInputSection.scss'
 import { IoIosRefresh } from "react-icons/io";
 import ResultSpeed from '../ResultSpeed/ResultSpeed';
+import { TIME_LEFT } from '../../data/config';
 
 const TextInputSection = () => {
     const randomtext = getRandomText()
@@ -12,8 +13,8 @@ const TextInputSection = () => {
     const textareaRef = useRef(null)
     const [wrongCounter, setWrongCounter] = useState(0); 
     //!! пр розширені функціоналу можна дозволи токистувачу вибирати тривалість
-    const [timeLeft, setTimeLeft] = useState(10)
-
+    const [timeLeft, setTimeLeft] = useState(TIME_LEFT)
+    console.log(TIME_LEFT)
     useEffect(() => {
         if (!isBlurred && timeLeft > 0) {
             const timer = setInterval(() => {
@@ -24,6 +25,12 @@ const TextInputSection = () => {
         }
     }, [timeLeft, isBlurred])
     console.log(timeLeft)
+
+    useEffect(() => {
+        if(textareaRef.current){
+            textareaRef.current.focus()
+        }
+    }, [text])
 
 
     const adjustTextareaHeight = () => {
@@ -74,7 +81,7 @@ const TextInputSection = () => {
 
     const handleRestartTyping = () => {
         setIsBlurred(false)
-        setTimeLeft(10)  
+        setTimeLeft(TIME_LEFT)  
         setText(getRandomText())
         setWrongCounter(0)
         setCurrentInputText('')
