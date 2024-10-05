@@ -12,7 +12,7 @@ const TextInputSection = () => {
     const textareaRef = useRef(null)
     const [wrongCounter, setWrongCounter] = useState(0); 
     //!! пр розширені функціоналу можна дозволи токистувачу вибирати тривалість
-    const [timeLeft, setTimeLeft] = useState(60)
+    const [timeLeft, setTimeLeft] = useState(10)
 
     useEffect(() => {
         if (!isBlurred && timeLeft > 0) {
@@ -72,6 +72,15 @@ const TextInputSection = () => {
         textareaRef.current.focus()
     }
 
+    const handleRestartTyping = () => {
+        setIsBlurred(false)
+        setTimeLeft(10)  
+        setText(getRandomText())
+        setWrongCounter(0)
+        setCurrentInputText('')
+
+    }
+
     return (
         <>
             {timeLeft > 0 ?
@@ -103,12 +112,12 @@ const TextInputSection = () => {
                     </div>
                     {/** timer section */}
                     <div className='timer'>
-                        <IoIosRefresh  />
+                        <IoIosRefresh onClick={handleRestartTyping} />
                         <p>{timeLeft} сек</p>
                     </div>
                 </div>
                 : 
-                <ResultSpeed numberCharactersEntered={currentInputText.length} numberOfWrongCharacters={wrongCounter}/>}
+                <ResultSpeed numberCharactersEntered={currentInputText.length} numberOfWrongCharacters={wrongCounter} restartTyping = {handleRestartTyping}/>}
         </>
     )
 }

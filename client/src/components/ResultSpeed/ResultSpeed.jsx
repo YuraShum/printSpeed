@@ -5,7 +5,7 @@ import { IoIosRefresh } from "react-icons/io";
 import './ResultSpeed.scss'
 //!! додати функціонал перезавантаження (створити на верхньому рівні функцію яка зкидуватиме таймер та оновлюватиме тест та інші значення)
 
-const ResultSpeed = ({ numberCharactersEntered, numberOfWrongCharacters }) => {
+const ResultSpeed = ({ numberCharactersEntered, numberOfWrongCharacters, restartTyping }) => {
 
     function calculatePercentage(total, part) {
         if (total > 0) {
@@ -38,7 +38,8 @@ const ResultSpeed = ({ numberCharactersEntered, numberOfWrongCharacters }) => {
                 </div>
             </div>
             {/** start again section */}
-            <button>
+            <button
+            onClick={restartTyping}>
                 <IoIosRefresh style={{ width: '30px', height: "30px" }} />
             </button>
         </div>
