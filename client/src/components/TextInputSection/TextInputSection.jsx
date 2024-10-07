@@ -27,6 +27,7 @@ const TextInputSection = () => {
     console.log(timeLeft)
 
     useEffect(() => {
+        adjustTextareaHeight()
         if (textareaRef.current) {
             textareaRef.current.focus()
         }
@@ -34,15 +35,17 @@ const TextInputSection = () => {
 
     const adjustTextareaHeight = () => {
         const element = document.querySelector('textarea')
-        element.style.height = 'auto';
-        element.style.height = paragraphElement().scrollHeight + 'px';
+        const paragraph = paragraphElement()
+        if (element && paragraph) {
+            element.style.height = 'auto';
+            element.style.height = paragraphElement().scrollHeight + 'px';
+
+        }
     };
 
     useEffect(() => {
-        adjustTextareaHeight()
-
         const handleClick = (event) => {
-            if(!event.target.closest('.timer button')){
+            if (!event.target.closest('.timer button')) {
                 setIsBlurred(true)
             }
         }
@@ -86,6 +89,7 @@ const TextInputSection = () => {
         setText(getRandomText())
         setWrongCounter(0)
         setCurrentInputText('')
+        adjustTextareaHeight()
     }
 
     return (
@@ -121,7 +125,7 @@ const TextInputSection = () => {
                     <div className='timer'>
                         <button
                             onClick={handleRestartTyping}>
-                            <IoIosRefresh style={{width: '20px',height: '20px'}}/>
+                            <IoIosRefresh style={{ width: '20px', height: '20px' }} />
                         </button>
                         <p>{timeLeft} сек</p>
                     </div>
