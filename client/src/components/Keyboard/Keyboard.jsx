@@ -8,21 +8,16 @@ const Keyboard = () => {
     const [currentKeyDown, setCurrentKeyDown] = useState(null)
 
     useEffect(() => {
-        const textareaElement = document.querySelector('textarea');
-
         const handleKeyDown = (event) => {
-            setCurrentKeyDown(event.key); 
-        };
-
-        if (textareaElement) {
-            textareaElement.addEventListener('keydown', handleKeyDown);
+            setCurrentKeyDown(event.key)
         }
+
+        document.addEventListener('keydown', handleKeyDown)
+
         return () => {
-            if (textareaElement) {
-                textareaElement.removeEventListener('keydown', handleKeyDown);
-            }
-        };
-    }, []); 
+            document.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [])
     console.log(currentKeyDown)
 
     return (
@@ -33,11 +28,11 @@ const Keyboard = () => {
                     return (
                         <div className='keyboard-row' key={index}>
                             {keyboardRow.map(key_object => (
-                                <Key 
-                                key={key_object.keyNameUk} 
-                                config={key_object} 
-                                rowIndex= {index}  
-                                keyPressed={currentKeyDown}/>
+                                <Key
+                                    key={key_object.keyNameUk}
+                                    config={key_object}
+                                    rowIndex={index}
+                                    keyPressed={currentKeyDown} />
                             ))}
                         </div>
                     )
